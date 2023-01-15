@@ -46,11 +46,11 @@ public class User implements UserDetails {
 	@OneToOne
 	private SavingsAccount savingsAccount;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<Appointment> appointmentList;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Recipient> recipientList;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

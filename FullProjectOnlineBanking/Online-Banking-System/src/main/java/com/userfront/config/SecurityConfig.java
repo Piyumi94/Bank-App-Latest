@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -17,7 +20,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.userfront.service.UserServiceImpl.UserSecurityService;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
 	@Autowired
@@ -25,6 +29,7 @@ public class SecurityConfig {
 
 	@Autowired
 	private UserSecurityService userSecurityService;
+
 
 	private static final String SALT = "salt"; // Salt should be protected carefully
 
@@ -37,20 +42,30 @@ public class SecurityConfig {
 			"/about/**", "/contact/**", "/error/**/*", "/console/**", "/signup" };
 
 	@Bean
-	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().requestMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
+	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests(
+				(requests) -> requests.requestMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated());
 
-		http.csrf().disable().cors().disable().formLogin().failureUrl("/index?error").defaultSuccessUrl("/userFront")
-				.loginPage("/index").permitAll().and().logout()
+		http.csrf().disable().cors().disable().formLogin().loginPage("/index").defaultSuccessUrl("/userFront",true)
+				.permitAll().and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index?logout")
 				.deleteCookies("remember-me").permitAll().and().rememberMe();
 		return http.build();
 	}
 
+//	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//auth.inMemoryAuthentication().withUser("user").password("password").roles("USER"); //This is in-memory authentication
+////auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
+//}
 	
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    	 auth.inMemoryAuthentication().withUser("user").password("password").roles("USER"); //This is in-memory authentication
-		auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
-	}
+	   @Bean
+       public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
+            AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+            authenticationManagerBuilder
+                  .userDetailsService(userSecurityService)
+                  .passwordEncoder(passwordEncoder());
+            return authenticationManagerBuilder.build();
+        }	
+
 
 }
