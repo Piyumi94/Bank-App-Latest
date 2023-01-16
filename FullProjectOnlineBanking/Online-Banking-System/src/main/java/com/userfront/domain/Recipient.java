@@ -9,6 +9,12 @@ import jakarta.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Simple JavaBean domain object representing a Recipient.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class Recipient {
 

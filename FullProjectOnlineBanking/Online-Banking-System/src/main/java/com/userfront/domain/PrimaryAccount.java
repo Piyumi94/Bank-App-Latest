@@ -13,6 +13,12 @@ import jakarta.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Simple JavaBean domain object representing a Primary Account.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class PrimaryAccount {
 

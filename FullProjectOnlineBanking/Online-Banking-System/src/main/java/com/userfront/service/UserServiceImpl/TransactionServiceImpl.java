@@ -23,6 +23,12 @@ import com.userfront.domain.User;
 import com.userfront.service.TransactionService;
 import com.userfront.service.UserService;
 
+/**
+ * Transaction service implementation layer
+ * 
+ * @author user
+ *
+ */
 @Service
 public class TransactionServiceImpl implements TransactionService {
 	

@@ -12,38 +12,56 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.userfront.domain.User;
 import com.userfront.service.UserService;
 
+/**
+ * user management controller
+ * 
+ * @author Piyumi
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(Principal principal, Model model) {
-        User user = userService.findByUsername(principal.getName());
+	/**
+	 * load profile page
+	 * 
+	 * @param principal
+	 * @param model
+	 * @return profile page
+	 */
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile(Principal principal, Model model) {
+		User user = userService.findByUsername(principal.getName());
 
-        model.addAttribute("user", user);
+		model.addAttribute("user", user);
 
-        return "profile";
-    }
+		return "profile";
+	}
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String profilePost(@ModelAttribute("user") User newUser, Model model) {
-        User user = userService.findByUsername(newUser.getUsername());
-        user.setUsername(newUser.getUsername());
-        user.setFirstName(newUser.getFirstName());
-        user.setLastName(newUser.getLastName());
-        user.setEmail(newUser.getEmail());
-        user.setPhone(newUser.getPhone());
+	/**
+	 * after successfull user creation return to profile page
+	 * 
+	 * @param newUser
+	 * @param model
+	 * @return profile page
+	 */
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	public String profilePost(@ModelAttribute("user") User newUser, Model model) {
+		User user = userService.findByUsername(newUser.getUsername());
+		user.setUsername(newUser.getUsername());
+		user.setFirstName(newUser.getFirstName());
+		user.setLastName(newUser.getLastName());
+		user.setEmail(newUser.getEmail());
+		user.setPhone(newUser.getPhone());
 
-        model.addAttribute("user", user);
+		model.addAttribute("user", user);
 
-        userService.saveUser(user);
+		userService.saveUser(user);
 
-        return "profile";
-    }
-
+		return "profile";
+	}
 
 }
-

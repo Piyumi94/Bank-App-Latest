@@ -17,39 +17,61 @@ import com.userfront.domain.User;
 import com.userfront.service.AppointmentService;
 import com.userfront.service.UserService;
 
+/**
+ * Appointment controller
+ * 
+ * @author Piyumi
+ *
+ */
 @Controller
 @RequestMapping("/appointment")
 public class AppointmentController {
 
-    @Autowired
-    private AppointmentService appointmentService;
+	@Autowired
+	private AppointmentService appointmentService;
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @RequestMapping(value = "/create",method = RequestMethod.GET)
-    public String createAppointment(Model model) {
-        Appointment appointment = new Appointment();
-        model.addAttribute("appointment", appointment);
-        model.addAttribute("dateString", "");
+	/**
+	 * load appointment page after click create
+	 * 
+	 * @param model
+	 * @return appointment page
+	 */
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String createAppointment(Model model) {
+		Appointment appointment = new Appointment();
+		model.addAttribute("appointment", appointment);
+		model.addAttribute("dateString", "");
 
-        return "appointment";
-    }
+		return "appointment";
+	}
 
-    @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public String createAppointmentPost(@ModelAttribute("appointment") Appointment appointment, @ModelAttribute("dateString") String date, Model model, Principal principal) throws ParseException {
+	/**
+	 * redirect to userFront after completing the appointment
+	 * 
+	 * @param appointment
+	 * @param date
+	 * @param model
+	 * @param principal
+	 * @return userFront page
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createAppointmentPost(@ModelAttribute("appointment") Appointment appointment,
+			@ModelAttribute("dateString") String date, Model model, Principal principal) throws ParseException {
 
-        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        Date d1 = format1.parse( date );
-        appointment.setDate(d1);
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		Date d1 = format1.parse(date);
+		appointment.setDate(d1);
 
-        User user = userService.findByUsername(principal.getName());
-        appointment.setUser(user);
+		User user = userService.findByUsername(principal.getName());
+		appointment.setUser(user);
 
-        appointmentService.createAppointment(appointment);
+		appointmentService.createAppointment(appointment);
 
-        return "redirect:/userFront";
-    }
-
+		return "redirect:/userFront";
+	}
 
 }

@@ -19,6 +19,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.userfront.service.UserServiceImpl.UserSecurityService;
 
+/**
+ * protecting resources using Spring Security
+ * 
+ * @author Piyumi
+ *
+ */
 @Configuration
 @EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -30,9 +36,13 @@ public class SecurityConfig {
 	@Autowired
 	private UserSecurityService userSecurityService;
 
-
 	private static final String SALT = "salt"; // Salt should be protected carefully
 
+	/**
+	 * Password encording config bean
+	 * 
+	 * @return
+	 */
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
@@ -41,31 +51,37 @@ public class SecurityConfig {
 	private static final String[] PUBLIC_MATCHERS = { "/webjars/**", "/css/**", "/js/**", "/images/**", "/",
 			"/about/**", "/contact/**", "/error/**/*", "/console/**", "/signup" };
 
+	/**
+	 * creates a Servlet Filter
+	 * 
+	 * @param http
+	 * @return Servlet Filter
+	 * @throws Exception
+	 */
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(
 				(requests) -> requests.requestMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated());
 
-		http.csrf().disable().cors().disable().formLogin().loginPage("/index").defaultSuccessUrl("/userFront",true)
-				.permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index?logout")
-				.deleteCookies("remember-me").permitAll().and().rememberMe();
+		http.csrf().disable().cors().disable().formLogin().loginPage("/index").defaultSuccessUrl("/userFront", true)
+				.permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/index?logout").deleteCookies("remember-me").permitAll().and().rememberMe();
 		return http.build();
 	}
 
-//	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//auth.inMemoryAuthentication().withUser("user").password("password").roles("USER"); //This is in-memory authentication
-////auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
-//}
-	
-	   @Bean
-       public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
-            AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-            authenticationManagerBuilder
-                  .userDetailsService(userSecurityService)
-                  .passwordEncoder(passwordEncoder());
-            return authenticationManagerBuilder.build();
-        }	
-
+	/**
+	 * input authentication is validing and verifing
+	 * 
+	 * @param http
+	 * @return Authentication instance
+	 * @throws Exception
+	 */
+	@Bean
+	public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
+		AuthenticationManagerBuilder authenticationManagerBuilder = http
+				.getSharedObject(AuthenticationManagerBuilder.class);
+		authenticationManagerBuilder.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
+		return authenticationManagerBuilder.build();
+	}
 
 }

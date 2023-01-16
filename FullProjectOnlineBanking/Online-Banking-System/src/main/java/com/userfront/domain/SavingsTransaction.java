@@ -10,6 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+/**
+ * Simple JavaBean domain object representing a Savings Transaction.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class SavingsTransaction {
 

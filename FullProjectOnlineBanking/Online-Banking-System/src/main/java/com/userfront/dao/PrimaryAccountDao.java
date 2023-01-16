@@ -4,9 +4,14 @@ import com.userfront.domain.PrimaryAccount;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Created by z00382545 on 10/21/16.
+ * repository class for Primary Account domain objects All method names are
+ * compliant with Spring Data naming conventions so this interface can easily be
+ * extended for Spring
+ * 
+ * @author Piyumi
+ *
  */
-public interface PrimaryAccountDao extends CrudRepository<PrimaryAccount,Long> {
+public interface PrimaryAccountDao extends CrudRepository<PrimaryAccount, Long> {
 
-    PrimaryAccount findByAccountNumber (int accountNumber);
+	PrimaryAccount findByAccountNumber(int accountNumber);
 }

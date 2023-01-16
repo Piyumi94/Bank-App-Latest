@@ -4,6 +4,12 @@ import com.userfront.domain.User;
 
 import jakarta.persistence.*;
 
+/**
+ * Simple JavaBean domain object representing a User Role.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 @Table(name = "user_role")
 public class UserRole {

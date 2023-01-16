@@ -4,46 +4,49 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
+/**
+ * Simple JavaBean domain object representing a Role.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class Role {
-    @Id
+	@Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int roleId;
+	private int roleId;
 
-    private String name;
+	private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<UserRole> userRoles = new HashSet<>();
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<UserRole> userRoles = new HashSet<>();
 
-    public Role() {
+	public Role() {
 
-    }
+	}
 
-    public int getRoleId() {
-        return roleId;
-    }
+	public int getRoleId() {
+		return roleId;
+	}
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
+	}
 
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
+	}
 
 }

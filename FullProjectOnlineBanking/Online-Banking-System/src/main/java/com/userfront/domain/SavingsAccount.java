@@ -13,6 +13,12 @@ import jakarta.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * Simple JavaBean domain object representing a Savings Account.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class SavingsAccount {
 

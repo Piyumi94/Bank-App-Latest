@@ -7,11 +7,19 @@ import com.userfront.domain.PrimaryTransaction;
 import com.userfront.domain.SavingsAccount;
 import com.userfront.domain.SavingsTransaction;
 
+/**
+ * Account Service interface layer
+ * 
+ * @author Piyumi
+ *
+ */
 public interface AccountService {
 	PrimaryAccount createPrimaryAccount();
-    SavingsAccount createSavingsAccount();
-    void deposit(String accountType, double amount, Principal principal);
-    void withdraw(String accountType, double amount, Principal principal);
-    
-    
+
+	SavingsAccount createSavingsAccount();
+
+	void deposit(String accountType, double amount, Principal principal);
+
+	void withdraw(String accountType, double amount, Principal principal);
+
 }

@@ -16,39 +16,72 @@ import com.userfront.domain.User;
 import com.userfront.service.TransactionService;
 import com.userfront.service.UserService;
 
+/**
+ * User Resource contoller
+ * 
+ * @author Piyumi
+ *
+ */
 @RestController
 @RequestMapping("/api")
 @PreAuthorize("hasRole('ADMIN')")
 public class UserResource {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @Autowired
-    private TransactionService transactionService;
+	@Autowired
+	private TransactionService transactionService;
 
-    @RequestMapping(value = "/user/all", method = RequestMethod.GET)
-    public List<User> userList() {
-        return userService.findUserList();
-    }
+	/**
+	 * get all users
+	 * 
+	 * @return List of User objects
+	 */
+	@RequestMapping(value = "/user/all", method = RequestMethod.GET)
+	public List<User> userList() {
+		return userService.findUserList();
+	}
 
-    @RequestMapping(value = "/user/primary/transaction", method = RequestMethod.GET)
-    public List<PrimaryTransaction> getPrimaryTransactionList(@RequestParam("username") String username) {
-        return transactionService.findPrimaryTransactionList(username);
-    }
+	/**
+	 * get all Primary Transaction List
+	 * 
+	 * @param username
+	 * @return List of PrimaryTransaction objects
+	 */
+	@RequestMapping(value = "/user/primary/transaction", method = RequestMethod.GET)
+	public List<PrimaryTransaction> getPrimaryTransactionList(@RequestParam("username") String username) {
+		return transactionService.findPrimaryTransactionList(username);
+	}
 
-    @RequestMapping(value = "/user/savings/transaction", method = RequestMethod.GET)
-    public List<SavingsTransaction> getSavingsTransactionList(@RequestParam("username") String username) {
-        return transactionService.findSavingsTransactionList(username);
-    }
+	/**
+	 * get all Savings Transaction List
+	 * 
+	 * @param username
+	 * @return List of SavingsTransaction objects
+	 */
+	@RequestMapping(value = "/user/savings/transaction", method = RequestMethod.GET)
+	public List<SavingsTransaction> getSavingsTransactionList(@RequestParam("username") String username) {
+		return transactionService.findSavingsTransactionList(username);
+	}
 
-    @RequestMapping("/user/{username}/enable")
-    public void enableUser(@PathVariable("username") String username) {
-        userService.enableUser(username);
-    }
+	/**
+	 * enable user
+	 * 
+	 * @param username
+	 */
+	@RequestMapping("/user/{username}/enable")
+	public void enableUser(@PathVariable("username") String username) {
+		userService.enableUser(username);
+	}
 
-    @RequestMapping("/user/{username}/disable")
-    public void diableUser(@PathVariable("username") String username) {
-        userService.disableUser(username);
-    }
+	/**
+	 * disable user
+	 * 
+	 * @param username
+	 */
+	@RequestMapping("/user/{username}/disable")
+	public void diableUser(@PathVariable("username") String username) {
+		userService.disableUser(username);
+	}
 }

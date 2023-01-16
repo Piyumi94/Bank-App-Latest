@@ -22,6 +22,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.userfront.domain.security.Authority;
 import com.userfront.domain.security.UserRole;
 
+/**
+ * Simple JavaBean domain object representing a User.
+ * 
+ * @author Piyumi
+ *
+ */
 @Entity
 public class User implements UserDetails {
 

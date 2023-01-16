@@ -21,6 +21,12 @@ import com.userfront.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+/**
+ * home page controller
+ * 
+ * @author Piyumi
+ *
+ */
 @Controller
 public class HomeController {
 
@@ -30,16 +36,32 @@ public class HomeController {
 	@Autowired
 	private RoleDao roleDao;
 
+	/**
+	 * load base page
+	 * 
+	 * @return index page
+	 */
 	@RequestMapping("/")
 	public String home() {
 		return "redirect:/index";
 	}
 
+	/**
+	 * load index page
+	 * 
+	 * @return index page
+	 */
 	@RequestMapping("/index")
 	public String index() {
 		return "index";
 	}
 
+	/**
+	 * load signup page
+	 * 
+	 * @param model
+	 * @return signup page
+	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup(Model model) {
 		User user = new User();
@@ -49,6 +71,14 @@ public class HomeController {
 		return "signup";
 	}
 
+	/**
+	 * load sign up page if user exist or otherwise create user and rediret to base
+	 * page
+	 * 
+	 * @param user
+	 * @param model
+	 * @return signup page / base page
+	 */
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signupPost(@ModelAttribute("user") User user, Model model) {
 
@@ -73,6 +103,13 @@ public class HomeController {
 		}
 	}
 
+	/**
+	 * load userFront page
+	 * 
+	 * @param principal
+	 * @param model
+	 * @return userFront page
+	 */
 	@RequestMapping("/userFront")
 	public String userFront(Principal principal, Model model) {
 		User user = userService.findByUsername(principal.getName());
