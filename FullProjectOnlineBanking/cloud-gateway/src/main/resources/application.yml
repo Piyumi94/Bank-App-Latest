@@ -10,7 +10,7 @@ spring:
          -  id: CORE-BANKING-SERVICE
             uri: lb://CORE-BANKING-SERVICE
             predicates:
-            - Path=/**
+            - Path=/banking-core/**
 
 eureka:
    client:

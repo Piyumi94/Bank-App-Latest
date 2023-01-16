@@ -3,9 +3,19 @@
 <head th:replace="common/header :: common-header"/>
 <body>
 <!-- Login Section -->
-    <img class="img-responsive" src="/images/bann.png" alt="bann"/>
-    <div class="container">
-        <div class="row ">
+    <!-- <img class="img-responsive" src="/images/bann.png" alt="bann"/> -->
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-4 banner">
+                <label class="brand_desc">Digital Platform for Secure Banking</label>
+                <img class="pattern_bg" src="/images/pattern-lines.svg"/>
+                <img class="brand" src="/images/brand.png" />
+            </div>
+
+            <div class="col-md-8 user_form">
+
+
             <div class="main-center ">
                 <div class="bg-danger" th:if="${param.error}">
                     Invalid username and secret.
@@ -14,7 +24,7 @@
                     You have been logged out.
                 </div>
                 <form class="form-signin" th:action="@{/index}" method="post">
-                    <h2 class="form-signin-heading">Please sign in</h2>
+                    <h2 class="form-signin-heading">Welcome Back! <br> Please Sign IN to Continue...</h2>
                     <div class="form-group">
                         <label for="username" class="sr-only">Username</label>
                         <input type="text" roleId="username" class="form-control" placeholder="Username" name="username"
@@ -30,14 +40,19 @@
                     <div class="form-group">
                         <input type="checkbox" name="remember-me" id="remember-me"/> &nbsp; Remember me
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-signin" type="submit">Sign IN</button>
                 </form>
                 
                 <hr />
                 
-                <div class="form-group ">
-                    <a type="submit" class="btn btn-info btn-lg btn-block login-button" th:href="@{/signup}">Sign up!</a>
+                <div class="form-group text-center">
+                    Don't have an account? <a type="submit" class="text-primary text-gradient" th:href="@{/signup}">Sign UP</a>
                 </div>
+            </div> 
+
+
             </div>
+
+
         </div>
     </div>

@@ -4,19 +4,29 @@
 <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <!--<head th:replace="common/header :: navbar" />-->
 
-<div class="container">
+<div class="container-fluid">
 <fieldset>
-    <div class="row main">
-        <div class="panel-heading">
+    <div class="row">
+        <!-- <div class="panel-heading">
             <div class="panel-title text-center">
 				<h2 th:text="#{title.signupForm}">signup</h2>
                 <hr />
             </div>
-        </div>
-        <div class="main-login main-center">
-            <form class="form-horizontal" method="post" th:action="@{/signup}">
+        </div> -->
 
-                <div class="form-group">
+        <div class="col-md-4 banner">
+            <label class="brand_desc">Digital Platform for Secure Banking</label>
+            <img class="pattern_bg" src="/images/pattern-lines.svg"/>
+            <img class="brand" src="/images/brand.png" />
+        </div>
+
+        <div class="col-md-8 ac_create">
+        <div class="main-login main-signup">
+            <form class="form-horizontal" method="post" th:action="@{/signup}">
+                <h2 class="form-signin-heading mlr">Create Account! <br> Please provide below details...</h2>
+                <div class="form-row">
+                
+                <div class="form-group col-md-6">
                     <label for="firstName" class="cols-sm-2 control-label">First Name</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
@@ -26,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
@@ -36,7 +46,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                </div>
+
+
+                <div class="form-row">
+
+                <div class="form-group col-md-6">
                     <label for="phone" class="cols-sm-2 control-label">Phone</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
@@ -46,8 +61,8 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email" class="cols-sm-2 control-label">Your Email</label><span class="bg-danger pull-right" th:if="${emailExists}">Email already exists</span>
+                <div class="form-group col-md-6">
+                    <label for="email" class="cols-sm-2 control-label">Email</label><span class="bg-danger pull-right" th:if="${emailExists}">Email already exists</span>
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -56,7 +71,13 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                </div>
+
+
+
+                <div class="form-row">
+
+                <div class="form-group col-md-6">
                     <label for="username" class="cols-sm-2 control-label">Username</label><span class="bg-danger pull-right" th:if="${usernameExists}">Username already exists</span>
                     <div class="cols-sm-10">
                         <div class="input-group">
@@ -66,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-md-6">
                     <label for="password" class="cols-sm-2 control-label">Password</label>
                     <div class="cols-sm-10">
                         <div class="input-group">
@@ -81,6 +102,8 @@
                     </div>
                 </div>
 
+                </div>
+
                 <!--<div class="form-group">-->
                     <!--<label for="confirm" class="cols-sm-2 control-label">Confirm Secret</label>-->
                     <!--<div class="cols-sm-10">-->
@@ -92,15 +115,16 @@
                 <!--</div>-->
 
                 <div class="form-group ">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Sign up!</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button btn-signup">Sign UP</button>
                 </div>
                 
                 <hr />
                 
-				<div class="form-group ">
-                    <a  class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancel</a>
+				<div class="form-group text-center">
+                    Already have an account? <a  class="text-primary text-gradient" th:href="@{/}">Sign IN</a>
                 </div>
             </form>
+        </div>
         </div>
     </div>
     </fieldset>
