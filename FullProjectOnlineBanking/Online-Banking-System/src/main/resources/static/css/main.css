@@ -196,12 +196,12 @@ html {
 
 .responstable {
 	margin: 1em 0;
-	width: 100%;
-	overflow: hidden;
-	background: #FFF;
-	color: #024457;
-	border-radius: 10px;
-	border: 1px solid #167F92;
+    width: 100%;
+    overflow: hidden;
+    background: #edfaff;
+    color: #024457;
+    border-radius: 10px;
+    border: 1px solid #167F92;
 }
 
 .responstable tr {
@@ -214,8 +214,9 @@ html {
 
 .responstable th {
 	display: none;
+	font-weight: 400;
 	border: 1px solid #FFF;
-	background-color: #167F92;
+	background-color: #45b6c9;
 	color: #FFF;
 	padding: 1em;
 }
@@ -284,13 +285,13 @@ body {
 }
 
 h1 {
-	font-family: Verdana;
+	font-family: 'Dongle', sans-serif;
 	font-weight: normal;
 	/*color: #024457;*/
 }
 
 h1 span {
-	color: #167F92;
+	color: #165392;
 }
 
 .box {
@@ -483,4 +484,137 @@ label {
 
 .dropdown-menu {
 	font-size: 22px;
+}
+
+.visa {
+	width: 330px;
+}
+
+.panel-visa {
+	background: #d2daff;
+    border-radius: 9px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+	margin-right: 2rem;
+	width: 360px;
+	max-width: 100%;
+}
+
+.layer {
+	display: flex;
+    justify-content: flex-end;
+}
+
+.acc {
+	background: #d2daff;
+    border-radius: 9px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+	margin-right: 2rem;
+	width: 360px;
+	max-width: 100%;
+	margin-bottom: 17px;
+}
+
+.acc .panel-heading {
+	padding: 5px 10px;
+}
+
+.acc .panel-body {
+	padding: 0 15px;
+}
+
+.currency .fa {
+	font-size: initial;
+}
+
+.currency {
+	font-size: 32px;
+    margin: 0.33em;
+}
+
+.headwave {
+    background: url("/images/curved.jpg");
+    background-size: cover;
+	width: 100%;
+	height: 120px;
+}
+
+.prm {
+	background: linear-gradient(90deg, #f8e3ff 0%, #d9e7ff 100%);
+}
+
+.sv {
+	background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #ffffff9c;
+    backdrop-filter: blur(20px);
+    border-top: 1px transparent;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 9px;
+}
+
+.panel-heading {
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+}
+
+.panel {
+	border: none;
+	border-radius: 9px;
+}
+
+select.input-sm {
+    height: auto;
+    line-height: 30px;
+}
+
+table thead tr th {
+	font-weight: 400;
+}
+
+.form-control[readonly] {
+	background-color: #edf4fb;
+}
+
+#submitAppointment {
+	font-size: 21px;
+}
+
+.amount {
+	font-size: 21px;
+}
+
+.trans {
+	font-size: 23px;
+}
+
+.f22 {
+	font-size: 22px;
+}
+
+.navbar-default .navbar-brand {
+    color: #0a3342;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.fsc {
+	background-color: #cbedc5 !important;
+}
+
+.fvc {
+	background-color: #c6e9fd !important;
+}
+
+.title {
+	font-size: 30px !important;
+}
+
+.w-auto {
+	width: auto;
 }

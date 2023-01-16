@@ -3,26 +3,18 @@
 <head th:replace="common/header :: common-header"/>
 <body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 <head th:replace="common/header :: navbar"/>
+
 <div class="container main">
-    <div class="row">
-        <div class="col-lg-12">
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-6 col-md-6">
-            <div class="panel panel-info">
+    <div class="row layer">
+
+        <div class="col-6">
+
+            <div class="panel acc prm">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <!--<i class="fa fa-comments fa-5x"></i>-->
-                            <h2>Primary Balance: </h2>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <h1><i class="fa fa-usd" aria-hidden="true"></i> <span th:text="${primaryAccount.accountBalance}">...</span></h1>
-                        </div>
-                    </div>
+                    Primary Account Balance
+                </div>
+                <div class="panel-body">
+                    <h1 class="currency"><i class="fa fa-usd" aria-hidden="true"></i> <span th:text="${primaryAccount.accountBalance}">...</span></h1>
                 </div>
                 <a th:href="@{/account/primaryAccount}">
                     <div class="panel-footer">
@@ -32,17 +24,13 @@
                     </div>
                 </a>
             </div>
-            
-            <div class="panel panel-success">
+
+            <div class="panel acc sv">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <h2>Savings Balance: </h2>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <h1><i class="fa fa-usd" aria-hidden="true"></i> <span th:text="${savingsAccount.accountBalance}">...</span></h1>
-                        </div>
-                    </div>
+                    Savings Account Balance
+                </div>
+                <div class="panel-body">
+                    <h1 class="currency"><i class="fa fa-usd" aria-hidden="true"></i> <span th:text="${savingsAccount.accountBalance}">...</span></h1>
                 </div>
                 <a th:href="@{/account/savingsAccount}">
                     <div class="panel-footer">
@@ -52,19 +40,15 @@
                     </div>
                 </a>
             </div>
+
         </div>
 
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-credit-card fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div>Deposit</div>
-                        </div>
-                    </div>
+
+        <div class="col-3">
+            <div class="panel panel-visa">
+                <div class="panel-heading">Deposit</div>
+                <div class="panel-body">
+                    <img class="visa" src="/images/card1.png" />
                 </div>
                 <a th:href="@{/account/deposit}">
                     <div class="panel-footer">
@@ -75,19 +59,12 @@
                 </a>
             </div>
         </div>
-        
-        
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-money fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div>Withdraw</div>
-                        </div>
-                    </div>
+
+        <div class="col-3">
+            <div class="panel panel-visa">
+                <div class="panel-heading">Withdraw</div>
+                <div class="panel-body">
+                    <img class="visa" src="/images/card2.png" />
                 </div>
                 <a th:href="@{/account/withdraw}">
                     <div class="panel-footer">
@@ -98,12 +75,9 @@
                 </a>
             </div>
         </div>
+
     </div>
-    <!-- /.row -->
-
-
 </div>
-
 
 <div th:replace="common/header :: body-bottom-scripts"/>
 
