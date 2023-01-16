@@ -1,0 +1,22 @@
+server:
+   port: 8090
+
+spring:
+   application:
+      name: API-GATEWAY
+   cloud:
+      gateway:
+         routes:
+         -  id: CORE-BANKING-SERVICE
+            uri: lb://CORE-BANKING-SERVICE
+            predicates:
+            - Path=/**
+
+eureka:
+   client:
+      register-with-eureka: true
+      fetch-registry: true
+      service-url:
+         defaultZone: http://localhost:8761/eureka/
+   instance:
+      hostname: localhost
