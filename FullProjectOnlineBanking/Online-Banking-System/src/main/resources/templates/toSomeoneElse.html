@@ -28,7 +28,7 @@
 
                 <div class="form-group">
                     <label>3. Please specify the amount you would like to transfer: </label>
-                    <span class="input-group-addon">Amount $</span>
+                    <span class="input-group-addon amount">Amount $</span>
                     <input th:value="${amount}" type="text" name="amount" id="amount" class="form-control" aria-label="Amount (to the nearest dollar)" />
                 </div>
 
@@ -36,7 +36,7 @@
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Transfer</button>
+                <button class="btn btn-lg btn-primary btn-block trans" type="submit">Transfer</button>
             </form>
 
             <div class="col-md-6">
